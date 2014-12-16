@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.shuheisuzuki.mixitrainingview" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LinearLayoutPractice2Activity"
+            android:label="@string/title_activity_linear_layout_practice2" >
+        </activity>
+        <activity
+            android:name=".LinearLayoutPractice1Activity"
+            android:label="@string/title_activity_linear_layout_practice1" >
+        </activity>
+        <activity
+            android:name=".RelativeLayoutPractice1Activity"
+            android:label="@string/title_activity_relative_layout_practice1" >
+        </activity>
+        <activity
+            android:name=".RelativeLayoutPractice2Activity"
+            android:label="@string/title_activity_relative_layout_practice2" >
+        </activity>
+        <activity
+            android:name=".FrameLayoutPractice1Activity"
+            android:label="@string/title_activity_frame_layout_practice1" >
+        </activity>
+        <activity
+            android:name=".FrameLayoutPractice2Activity"
+            android:label="@string/title_activity_frame_layout_practice2" >
+        </activity>
+    </application>
+
+</manifest>
