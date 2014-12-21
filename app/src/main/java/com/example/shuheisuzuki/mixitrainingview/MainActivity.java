@@ -13,7 +13,8 @@ public class MainActivity extends ActionBarActivity {
 
     private Button linearLayoutPractice1Btn, linearLayoutPractice2Btn,
             RelativeLayoutPractice1Btn, RelativeLayoutPractice2Btn,
-            FrameLayoutPractice1Btn, FrameLayoutPractice2Btn;
+            FrameLayoutPractice1Btn, FrameLayoutPractice2Btn,
+            ScrollLayoutPractice1Btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,8 @@ public class MainActivity extends ActionBarActivity {
 
         FrameLayoutPractice1Btn = (Button) findViewById(R.id.FrameLayoutPractice1Btn);
         FrameLayoutPractice2Btn = (Button) findViewById(R.id.FrameLayoutPractice2Btn);
+
+        ScrollLayoutPractice1Btn = (Button) findViewById(R.id.ScrollLayoutPractice1Btn);
 
         linearLayoutPractice1Btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +80,15 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, FrameLayoutPractice2Activity.class);
+                intent.setAction(Intent.ACTION_VIEW);
+                startActivity(intent);
+            }
+        });
+
+        ScrollLayoutPractice1Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ScrollLayoutPractice1Activity.class);
                 intent.setAction(Intent.ACTION_VIEW);
                 startActivity(intent);
             }

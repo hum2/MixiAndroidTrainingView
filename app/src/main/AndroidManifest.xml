@@ -40,6 +40,10 @@
             android:name=".FrameLayoutPractice2Activity"
             android:label="@string/title_activity_frame_layout_practice2" >
         </activity>
+        <activity
+            android:name=".ScrollLayoutPractice1Activity"
+            android:label="@string/title_activity_scroll_layout_practice1" >
+        </activity>
     </application>
 
 </manifest>
