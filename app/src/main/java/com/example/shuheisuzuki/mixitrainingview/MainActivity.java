@@ -12,7 +12,6 @@ import android.widget.Button;
 public class MainActivity
         extends ActionBarActivity
 {
-
     private Button linearLayoutPractice1Btn, linearLayoutPractice2Btn,
             RelativeLayoutPractice1Btn, RelativeLayoutPractice2Btn,
             FrameLayoutPractice1Btn, FrameLayoutPractice2Btn,

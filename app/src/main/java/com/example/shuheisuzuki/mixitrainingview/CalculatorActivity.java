@@ -1,20 +1,122 @@
 package com.example.shuheisuzuki.mixitrainingview;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 public class CalculatorActivity
         extends ActionBarActivity
+        implements View.OnClickListener
 {
+    private final String TAG = this.getClass().getSimpleName();
+
+    private ArrayList<Integer> stackResults;
+    private Integer current;
+    private TextView result;
+    private Boolean flag_plus, flag_minus, flag_multi, flag_div, flag_dot;
+    private Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
+            btn00, btnPlus, btnMinus, btnMulti, btnDiv, btnEquals, btnDot, btnClear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
+
+        result = (TextView) findViewById(R.id.result);
+        btn0 = (Button) findViewById(R.id.btn0);
+        btn1 = (Button) findViewById(R.id.btn1);
+        btn2 = (Button) findViewById(R.id.btn2);
+        btn3 = (Button) findViewById(R.id.btn3);
+        btn4 = (Button) findViewById(R.id.btn4);
+        btn5 = (Button) findViewById(R.id.btn5);
+        btn6 = (Button) findViewById(R.id.btn6);
+        btn7 = (Button) findViewById(R.id.btn7);
+        btn8 = (Button) findViewById(R.id.btn8);
+        btn9 = (Button) findViewById(R.id.btn9);
+        btn00 = (Button) findViewById(R.id.btn00);
+        btnPlus = (Button) findViewById(R.id.btnPlus);
+        btnMinus = (Button) findViewById(R.id.btnMinus);
+        btnMulti = (Button) findViewById(R.id.btnMulti);
+        btnEquals = (Button) findViewById(R.id.btnEquals);
+        btnDiv = (Button) findViewById(R.id.btnDot);
+        btnClear = (Button) findViewById(R.id.btnClear);
+
+        btn0.setOnClickListener(this);
+        btn1.setOnClickListener(this);
+        btn2.setOnClickListener(this);
+        btn3.setOnClickListener(this);
+        btn4.setOnClickListener(this);
+        btn5.setOnClickListener(this);
+        btn6.setOnClickListener(this);
+        btn7.setOnClickListener(this);
+        btn8.setOnClickListener(this);
+        btn9.setOnClickListener(this);
+        btn00.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        int id = v.getId();
+        switch (id) {
+            case R.id.btn0:
+            case R.id.btn1:
+            case R.id.btn2:
+            case R.id.btn3:
+            case R.id.btn4:
+            case R.id.btn5:
+            case R.id.btn6:
+            case R.id.btn7:
+            case R.id.btn8:
+            case R.id.btn9:
+            case R.id.btn00:
+                String text = (String) result.getText();
+                Log.d(TAG, "pre text = " + text);
+                if (text.equals("0")) {
+                    text = "";
+                }
+                text += (String) ((Button) v).getText();
+                Log.d(TAG, "text = " + text);
+                result.setText(text);
+                break;
+            case R.id.btnPlus:
+                preSubmitFlag();
+                flag_plus = true;
+                break;
+            case R.id.btnMinus:
+                preSubmitFlag();
+                flag_minus = true;
+                break;
+            case R.id.btnMulti:
+                break;
+            case R.id.btnEquals:
+                break;
+            case R.id.btnDot:
+                break;
+            case R.id.btnClear:
+                break;
+        }
+    }
+
+    public void preSubmitFlag()
+    {
+        if (flag_plus || flag_minus || flag_multi || flag_div || flag_dot) {
+            stackResults.add(stackResults.size(), current);
+        }
+        flag_plus = false;
+        flag_minus = false;
+        flag_multi = false;
+        flag_div = false;
+        flag_dot = false;
     }
 
 
