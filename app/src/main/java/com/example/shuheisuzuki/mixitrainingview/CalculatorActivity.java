@@ -20,7 +20,7 @@ public class CalculatorActivity
 
     private ArrayList<Integer> stackResults;
     private Integer current;
-    private TextView result;
+    private TextView result,optinalText;
     private Boolean flag_plus, flag_minus, flag_multi, flag_div, flag_dot;
     private Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
             btn00, btnPlus, btnMinus, btnMulti, btnDiv, btnEquals, btnDot, btnClear;
@@ -32,6 +32,7 @@ public class CalculatorActivity
         setContentView(R.layout.activity_calculator);
 
         result = (TextView) findViewById(R.id.result);
+        optinalText = (TextView) findViewById(R.id.optionalText);
         btn0 = (Button) findViewById(R.id.btn0);
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
@@ -46,8 +47,9 @@ public class CalculatorActivity
         btnPlus = (Button) findViewById(R.id.btnPlus);
         btnMinus = (Button) findViewById(R.id.btnMinus);
         btnMulti = (Button) findViewById(R.id.btnMulti);
+        btnDiv = (Button) findViewById(R.id.btnDiv);
         btnEquals = (Button) findViewById(R.id.btnEquals);
-        btnDiv = (Button) findViewById(R.id.btnDot);
+        btnDot = (Button) findViewById(R.id.btnDot);
         btnClear = (Button) findViewById(R.id.btnClear);
 
         btn0.setOnClickListener(this);
@@ -61,12 +63,20 @@ public class CalculatorActivity
         btn8.setOnClickListener(this);
         btn9.setOnClickListener(this);
         btn00.setOnClickListener(this);
+        btnPlus.setOnClickListener(this);
+        btnMinus.setOnClickListener(this);
+        btnMulti.setOnClickListener(this);
+        btnDiv.setOnClickListener(this);
+        btnEquals.setOnClickListener(this);
+        btnDot.setOnClickListener(this);
+        btnClear.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v)
     {
         int id = v.getId();
+        String text, btnText;
         switch (id) {
             case R.id.btn0:
             case R.id.btn1:
@@ -79,30 +89,44 @@ public class CalculatorActivity
             case R.id.btn8:
             case R.id.btn9:
             case R.id.btn00:
-                String text = (String) result.getText();
+            case R.id.btnDot:
+                text = (String) result.getText();
+                btnText = (String) ((Button) v).getText();
                 Log.d(TAG, "pre text = " + text);
-                if (text.equals("0")) {
+                if (text.equals("0") && !btnText.equals(".")) {
                     text = "";
                 }
-                text += (String) ((Button) v).getText();
+                text += btnText;
+                if (text.equals("00")) {
+                    text = "0";
+                }
                 Log.d(TAG, "text = " + text);
                 result.setText(text);
                 break;
             case R.id.btnPlus:
-                preSubmitFlag();
-                flag_plus = true;
+//                preSubmitFlag();
+//                flag_plus = true;
+                optinalText.setText("+");
                 break;
             case R.id.btnMinus:
-                preSubmitFlag();
-                flag_minus = true;
+//                preSubmitFlag();
+//                flag_minus = true;
+                optinalText.setText("-");
                 break;
             case R.id.btnMulti:
+                optinalText.setText("×");
                 break;
+            case R.id.btnDiv:
+//                preSubmitFlag();
+//                flag_minus = true;
+                optinalText.setText("÷");
             case R.id.btnEquals:
-                break;
-            case R.id.btnDot:
+
                 break;
             case R.id.btnClear:
+                Log.d(TAG, "text = 0");
+                result.setText("0");
+                optinalText.setText("");
                 break;
         }
     }
@@ -110,7 +134,7 @@ public class CalculatorActivity
     public void preSubmitFlag()
     {
         if (flag_plus || flag_minus || flag_multi || flag_div || flag_dot) {
-            stackResults.add(stackResults.size(), current);
+        //    stackResults.add(stackResults.size(), current);
         }
         flag_plus = false;
         flag_minus = false;

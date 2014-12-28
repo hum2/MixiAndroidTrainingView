@@ -7,11 +7,18 @@
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
                 tools:context="com.example.shuheisuzuki.mixitrainingview.CalculatorActivity">
-
+    <TextView
+        android:id="@+id/optionalText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_size_larger"
+        android:textColor="@color/color_impact"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="@dimen/font_size_larger"
         android:text="0"
         android:gravity="right"
         android:layout_marginRight="5dp"
@@ -149,23 +156,23 @@
         android:layout_height="wrap_content">
         <Button
             android:id="@+id/btnEquals"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:layout_width="match_parent"
             android:layout_height="@dimen/btn_height_normal"
             android:text="="/>
         <Button
-            android:id="@+id/btnDot"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/btn_height_normal"
-            android:layout_marginLeft="10dp"
-            android:text="."/>
-        <Button
             android:id="@+id/btnClear"
-            android:layout_weight="1"
+            android:layout_weight="6"
             android:layout_width="match_parent"
             android:layout_height="@dimen/btn_height_normal"
             android:layout_marginLeft="10dp"
             android:text="C"/>
+        <Button
+            android:id="@+id/btnDot"
+            android:layout_weight="6"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_height_normal"
+            android:layout_marginLeft="10dp"
+            android:text="."/>
     </LinearLayout>
 </RelativeLayout>

@@ -2,4 +2,12 @@
 <resources>
     <color name="green_light">#90EE90</color>
     <color name="green_dark">#00a478</color>
+
+    <color name="gray_light">#808080</color>
+
+    <color name="color_main_dark">#CDD6D3</color>
+    <color name="color_impact">#767C7A</color>
+    <color name="color_dark">#C4CACA</color>
+    <color name="color_light">#E8EAE9</color>
+    <color name="color_main">#CCDBD8</color>
 </resources>
