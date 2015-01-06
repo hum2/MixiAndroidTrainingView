@@ -11,11 +11,13 @@ import android.widget.Button;
 
 public class MainActivity
         extends ActionBarActivity
+    implements View.OnClickListener
 {
     private Button linearLayoutPractice1Btn, linearLayoutPractice2Btn,
             RelativeLayoutPractice1Btn, RelativeLayoutPractice2Btn,
             FrameLayoutPractice1Btn, FrameLayoutPractice2Btn,
-            ScrollLayoutPractice1Btn, CalclatorPracticeBtn;
+            ScrollLayoutPractice1Btn, CalclatorPracticeBtn,
+            FragmentPracticeBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,92 +38,58 @@ public class MainActivity
 
         CalclatorPracticeBtn = (Button) findViewById(R.id.CalclatorPracticeBtn);
 
-        linearLayoutPractice1Btn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, LinearLayoutPractice1Activity.class);
-                intent.setAction(Intent.ACTION_VIEW);
-                startActivity(intent);
-            }
-        });
+        FragmentPracticeBtn = (Button) findViewById(R.id.FragmentPracticeBtn);
 
-        linearLayoutPractice2Btn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, LinearLayoutPractice2Activity.class);
-                intent.setAction(Intent.ACTION_VIEW);
-                startActivity(intent);
-            }
-        });
+        linearLayoutPractice1Btn.setOnClickListener(this);
+        linearLayoutPractice2Btn.setOnClickListener(this);
 
-        RelativeLayoutPractice1Btn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, RelativeLayoutPractice1Activity.class);
-                intent.setAction(Intent.ACTION_VIEW);
-                startActivity(intent);
-            }
-        });
+        RelativeLayoutPractice1Btn.setOnClickListener(this);
+        RelativeLayoutPractice2Btn.setOnClickListener(this);
 
-        RelativeLayoutPractice2Btn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, RelativeLayoutPractice2Activity.class);
-                intent.setAction(Intent.ACTION_VIEW);
-                startActivity(intent);
-            }
-        });
+        FrameLayoutPractice1Btn.setOnClickListener(this);
+        FrameLayoutPractice2Btn.setOnClickListener(this);
 
-        FrameLayoutPractice1Btn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, FrameLayoutPractice1Activity.class);
-                intent.setAction(Intent.ACTION_VIEW);
-                startActivity(intent);
-            }
-        });
-        FrameLayoutPractice2Btn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, FrameLayoutPractice2Activity.class);
-                intent.setAction(Intent.ACTION_VIEW);
-                startActivity(intent);
-            }
-        });
+        ScrollLayoutPractice1Btn.setOnClickListener(this);
 
-        ScrollLayoutPractice1Btn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, ScrollLayoutPractice1Activity.class);
-                intent.setAction(Intent.ACTION_VIEW);
-                startActivity(intent);
-            }
-        });
+        CalclatorPracticeBtn.setOnClickListener(this);
 
-        CalclatorPracticeBtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(MainActivity.this, CalculatorActivity.class);
-                intent.setAction(Intent.ACTION_VIEW);
-                startActivity(intent);
-            }
-        });
+        FragmentPracticeBtn.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        Intent intent = new Intent();
+
+        int id = v.getId();
+        switch(id) {
+            case R.id.linearLayoutPractice1Btn:
+                intent.setClass(MainActivity.this, LinearLayoutPractice1Activity.class);
+                break;
+            case R.id.linearLayoutPractice2Btn:
+                intent.setClass(MainActivity.this, LinearLayoutPractice2Activity.class);
+                break;
+            case R.id.RelativeLayoutPractice1Btn:
+                intent.setClass(MainActivity.this, RelativeLayoutPractice1Activity.class);
+                break;
+            case R.id.RelativeLayoutPractice2Btn:
+                intent.setClass(MainActivity.this, RelativeLayoutPractice2Activity.class);
+                break;
+            case R.id.FrameLayoutPractice1Btn:
+                intent.setClass(MainActivity.this, FrameLayoutPractice1Activity.class);
+                break;
+            case R.id.FrameLayoutPractice2Btn:
+                intent.setClass(MainActivity.this, FrameLayoutPractice2Activity.class);
+                break;
+            case R.id.ScrollLayoutPractice1Btn:
+                intent.setClass(MainActivity.this, ScrollLayoutPractice1Activity.class);
+                break;
+            case R.id.FragmentPracticeBtn:
+                intent.setClass(MainActivity.this, FragmentPracticeActivity.class);
+                break;
+        }
+        intent.setAction(Intent.ACTION_VIEW);
+        startActivity(intent);
     }
 
 

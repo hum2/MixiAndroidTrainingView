@@ -18,10 +18,11 @@ public class CalculatorActivity
 {
     private final String TAG = this.getClass().getSimpleName();
 
-    private ArrayList<Integer> stackResults;
-    private Integer current;
-    private TextView result,optinalText;
-    private Boolean flag_plus, flag_minus, flag_multi, flag_div, flag_dot;
+    private ArrayList<Integer> stackedValues = new ArrayList<Integer>();
+    private Integer stackedValue;
+    private TextView resultText, optinalText;
+    private String currentOpration = null;
+    private Boolean isAfterOpration = false;
     private Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
             btn00, btnPlus, btnMinus, btnMulti, btnDiv, btnEquals, btnDot, btnClear;
 
@@ -31,7 +32,7 @@ public class CalculatorActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
 
-        result = (TextView) findViewById(R.id.result);
+        resultText = (TextView) findViewById(R.id.result);
         optinalText = (TextView) findViewById(R.id.optionalText);
         btn0 = (Button) findViewById(R.id.btn0);
         btn1 = (Button) findViewById(R.id.btn1);
@@ -90,9 +91,14 @@ public class CalculatorActivity
             case R.id.btn9:
             case R.id.btn00:
             case R.id.btnDot:
-                text = (String) result.getText();
+                text = (String) resultText.getText();
                 btnText = (String) ((Button) v).getText();
                 Log.d(TAG, "pre text = " + text);
+                if (isAfterOpration) {
+                    Log.d(TAG, "next_current_point");
+                    text = "";
+                    isAfterOpration = false;
+                }
                 if (text.equals("0") && !btnText.equals(".")) {
                     text = "";
                 }
@@ -101,48 +107,53 @@ public class CalculatorActivity
                     text = "0";
                 }
                 Log.d(TAG, "text = " + text);
-                result.setText(text);
+                resultText.setText(text);
                 break;
             case R.id.btnPlus:
-//                preSubmitFlag();
-//                flag_plus = true;
-                optinalText.setText("+");
-                break;
             case R.id.btnMinus:
-//                preSubmitFlag();
-//                flag_minus = true;
-                optinalText.setText("-");
-                break;
             case R.id.btnMulti:
-                optinalText.setText("×");
-                break;
             case R.id.btnDiv:
-//                preSubmitFlag();
-//                flag_minus = true;
-                optinalText.setText("÷");
+                currentOpration = resultText.getText().toString();
+                optinalText.setText(currentOpration);
+                preProcOperation();
+                postProcOperation();
+                break;
             case R.id.btnEquals:
-
+                if (stackedValue != null) {
+                    Integer i = Integer.parseInt((String) resultText.getText());
+                    Integer r = stackedValue * i;
+                    stackedValue = null;
+                    resultText.setText(r.toString());
+                }
                 break;
             case R.id.btnClear:
                 Log.d(TAG, "text = 0");
-                result.setText("0");
+                resultText.setText("0");
                 optinalText.setText("");
                 break;
         }
     }
 
-    public void preSubmitFlag()
+    public void postProcOperation()
     {
-        if (flag_plus || flag_minus || flag_multi || flag_div || flag_dot) {
-        //    stackResults.add(stackResults.size(), current);
+        if (currentOpration.equals(null)) {
+            Log.d(TAG, "current = " + resultText);
+            stackedValue = Integer.parseInt((String) resultText.getText());
+            isAfterOpration = true;
+            stackedValues.add(stackedValues.size(), stackedValue);
+            Log.d(TAG, "size = " + stackedValues.size());
+            Log.d(TAG, "stackResults(" + stackedValues.size() + ") = " + stackedValues.get(stackedValues.size() - 1));
         }
-        flag_plus = false;
-        flag_minus = false;
-        flag_multi = false;
-        flag_div = false;
-        flag_dot = false;
     }
 
+    public void preProcOperation()
+    {
+//        flag_plus = false;
+//        flag_minus = false;
+//        flag_multi = false;
+//        flag_div = false;
+//        flag_dot = false;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
