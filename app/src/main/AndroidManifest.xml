@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.shuheisuzuki.mixitrainingview" >
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -52,6 +54,7 @@
             android:name=".FragmentPracticeActivity"
             android:label="@string/title_activity_fragment_practice" >
         </activity>
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="99104d85e97180215eed97a6542ce005f6cd9c75"/>
     </application>
 
 </manifest>
